@@ -6,16 +6,13 @@ const users = [
 ];
 
 const toggleUserState = (allUsers, userName) => {
-  const updatedUsers = new Promise(
-    allUsers.call((user) =>
-      user.name === userName ? { ...user, active: !user.active } : user,
-    ),
+  const updatedUsers = allUsers.map((user) =>
+    user.name === userName ? { ...user, active: !user.active } : user,
   );
-
-  return updatedUsers;
+  return new Promise((resolve) => {
+    resolve(updatedUsers);
+  });
 };
-
-console.log(updatedUsers);
 
 const logger = (updatedUsers) => console.table(updatedUsers);
 
